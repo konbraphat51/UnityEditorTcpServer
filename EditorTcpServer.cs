@@ -7,11 +7,27 @@ using UnityEngine;
 
 namespace EditorTcpServer
 {
+    /// <summary>
+    /// Base class for an UnityEditor TCP Server.
+    /// </summary>
+    /// <remarks>
+    /// Inherit from this class and implement the `ProcessRequest()` and `ShowWindow()` methods
+    /// Don't forget to add `[MenuItem("Window/WINDOW_NAME")]` attribute to `ShowWindow()`!
+    /// </remarks>
     public abstract class EditorTcpServer : EditorWindow
     {
         public bool isRunning { get; protected set; }
         private TcpListener tcpListener;
 
+        /// <summary>
+        /// Buisiness logic to process incoming requests.
+        /// </summary>
+        /// <param name="request">
+        /// The incoming request string to be processed.
+        /// </param>
+        /// <returns>
+        /// The response string to be sent back to the client.
+        /// </returns>
         public abstract string ProcessRequest(string request);
 
         protected virtual void OnGUI()
@@ -19,6 +35,7 @@ namespace EditorTcpServer
             // input for port number
             int port = EditorGUILayout.IntField("Port", 5000);
 
+            // run / stop button
             if (!isRunning)
             {
                 if (GUILayout.Button("Start Server"))
@@ -35,6 +52,10 @@ namespace EditorTcpServer
             }
         }
 
+        /// <summary>
+        /// Starts the TCP server on the specified port.
+        /// </summary>
+        /// <param name="port">port number</param>
         public void StartServer(int port)
         {
             try
@@ -51,6 +72,9 @@ namespace EditorTcpServer
             }
         }
 
+        /// <summary>
+        /// Stops the TCP server.
+        /// </summary>
         public void StopServer()
         {
             if (isRunning)
