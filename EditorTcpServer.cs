@@ -99,8 +99,16 @@ namespace UnityEditorTcpServer
         {
             while (isRunning)
             {
-                TcpClient client = await tcpListener.AcceptTcpClientAsync();
-                HandleClient(client);
+                try
+                {
+                    TcpClient client = await tcpListener.AcceptTcpClientAsync();
+                    HandleClient(client);
+                }
+                catch (ObjectDisposedException)
+                {
+                    // Listener has been stopped, exit the loop
+                    break;
+                }
             }
         }
 
