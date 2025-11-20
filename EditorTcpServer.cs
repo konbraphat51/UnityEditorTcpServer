@@ -7,6 +7,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -33,7 +34,7 @@ namespace UnityEditorTcpServer
         /// <returns>
         /// The response string to be sent back to the client.
         /// </returns>
-        public abstract string ProcessRequest(string request);
+        public abstract Task<string> ProcessRequest(string request);
 
         protected virtual void OnGUI()
         {
@@ -113,7 +114,7 @@ namespace UnityEditorTcpServer
                     string request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     Debug.Log($"Received: {request}");
 
-                    string response = ProcessRequest(request);
+                    string response = await ProcessRequest(request);
                     byte[] responseBytes = Encoding.UTF8.GetBytes(response);
                     await stream.WriteAsync(responseBytes, 0, responseBytes.Length);
                     Debug.Log($"Sent: {response}");

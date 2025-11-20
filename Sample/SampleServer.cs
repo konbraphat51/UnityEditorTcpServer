@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 
+using System.Threading.Tasks;
 using UnityEditor;
 
 namespace UnityEditorTcpServer.Sample
@@ -12,9 +13,10 @@ namespace UnityEditorTcpServer.Sample
             GetWindow<SampleServer>("Sample TCP Server");
         }
 
-        public override string ProcessRequest(string request)
+        public override Task<string> ProcessRequest(string request)
         {
-            return $"Dummy: {request}";
+            // convert your original result to Task type by `Task.FromResult()`
+            return Task.FromResult($"Dummy: {request}");
         }
 
         protected override void OnGUI()
