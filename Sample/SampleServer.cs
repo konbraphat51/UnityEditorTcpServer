@@ -2,7 +2,7 @@
 
 using UnityEditor;
 
-namespace EditorTcpServer.Sample
+namespace UnityEditorTcpServer.Sample
 {
     public class SampleServer : EditorTcpServer
     {

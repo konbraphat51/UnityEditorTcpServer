@@ -10,7 +10,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace EditorTcpServer
+namespace UnityEditorTcpServer
 {
     /// <summary>
     /// Base class for an UnityEditor TCP Server.
