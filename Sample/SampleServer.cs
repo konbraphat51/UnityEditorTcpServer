@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
 
 namespace EditorTcpServer.Sample
@@ -23,3 +25,5 @@ namespace EditorTcpServer.Sample
         }
     }
 }
+
+#endif

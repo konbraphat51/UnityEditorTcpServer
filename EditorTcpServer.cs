@@ -1,6 +1,8 @@
 // License: Boost Software License 1.0
 // Author: Konbraphat51
 
+#if UNITY_EDITOR
+
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -129,3 +131,5 @@ namespace EditorTcpServer
         }
     }
 }
+
+#endif
