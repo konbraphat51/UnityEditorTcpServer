@@ -85,7 +85,11 @@ namespace UnityEditorTcpServer
         {
             if (isRunning)
             {
-                tcpListener.Stop();
+                if (tcpListener != null)
+                {
+                    tcpListener.Stop();
+                    tcpListener = null;
+                }
                 isRunning = false;
                 Debug.Log("TCP Server stopped");
             }
