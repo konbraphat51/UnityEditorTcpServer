@@ -29,6 +29,16 @@ namespace EditorTcpServer
             }
         }
 
+        public void StopServer()
+        {
+            if (isRunning)
+            {
+                tcpListener.Stop();
+                isRunning = false;
+                Debug.Log("TCP Server stopped");
+            }
+        }
+
         private async void ListenForClients()
         {
             while (isRunning)
