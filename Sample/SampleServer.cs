@@ -14,5 +14,12 @@ namespace EditorTcpServer.Sample
         {
             return $"Dummy: {request}";
         }
+
+        protected override void OnGUI()
+        {
+            base.OnGUI();
+
+            // whatever
+        }
     }
 }
