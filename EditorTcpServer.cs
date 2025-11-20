@@ -8,10 +8,31 @@ using UnityEngine;
 
 namespace EditorTcpServer
 {
-    public abstract class EditorTcpServer : EditorWindow, IEditorWindow
+    public abstract class EditorTcpServer : EditorWindow
     {
         public bool isRunning { get; protected set; }
         private TcpListener tcpListener;
+
+        protected virtual void OnGUI()
+        {
+            // input for port number
+            int port = EditorGUILayout.IntField("Port", 5000);
+
+            if (!isRunning)
+            {
+                if (GUILayout.Button("Start Server"))
+                {
+                    StartServer(port);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Stop Server"))
+                {
+                    StopServer();
+                }
+            }
+        }
 
         public void StartServer(int port)
         {
